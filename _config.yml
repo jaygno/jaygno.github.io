@@ -1,21 +1,39 @@
 # Site settings
-title: Clean Blog
+title: Jay Guo
 header-img: img/home-bg.jpg
-email: your-email@yourdomain.com
+email: yunjie.gno@gamil.com
 copyright_name: Your/Project/Corporate Name
 description: "Write your site description here. It will be used as your sites meta description as well!"
 baseurl: ""
-url: "http://yourdomain.com"
+url: "http://blog.11p2f.com"
+
 twitter_username: SBootstrap
-github_username:  davidtmiller
+github_username:  jaygno
 facebook_username:  IronSummitMedia
-email_username:  your-email@yourdomain.com
+email_username:  yunjie.gno@gamil.com
 
 # Build settings
 markdown: kramdown
 highlighter: rouge
 permalink: pretty
-paginate: 5
+paginate: 10
 exclude: ["less","node_modules","Gruntfile.js","package.json","README.md"]
 
 gems: [jekyll-paginate, jekyll-feed]
+
+# Sidebar settings
+sidebar: true                           # whether or not using Sidebar.
+sidebar-about-description: "写写代码，做做设计，看看产品。世界那么大，我想去看看。"
+sidebar-avatar: /img/aboug-bg.png      # use absolute URL, seeing it's used in both `/` and `/about/`
+
+# Featured Tags
+featured-tags: true  
+featured-condition-size: 1     # A tag will be featured if the size of it is more than this condition value
+
+# Friends
+friends: [
+    {
+        title: "前端外刊评论",
+        href: "http://qianduan.guru/"
+    }
+]
