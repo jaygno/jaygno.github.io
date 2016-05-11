@@ -1,9 +1,9 @@
 ---
 layout:     post
-title:      "My first blog"
-subtitle:   "Open a new travel."
-date:       2016-05-11 10:00:00
-author:     "Jay Guo"
+title:      "Dinosaurs are extinct today"
+subtitle:   "because they lacked opposable thumbs and the brainpower to build a space program."
+date:       2016-06-10 12:00:00
+author:     "Start Bootstrap"
 header-img: "img/post-bg-01.jpg"
 ---
 
