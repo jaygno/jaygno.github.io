@@ -14,7 +14,8 @@ email_username:  yunjie.gno@gamil.com
 
 # Build settings
 markdown: kramdown
-highlighter: rouge
+#highlighter: rouge
+prettyprint: hljs-dark
 permalink: pretty
 paginate: 10
 exclude: ["less","node_modules","Gruntfile.js","package.json","README.md"]
