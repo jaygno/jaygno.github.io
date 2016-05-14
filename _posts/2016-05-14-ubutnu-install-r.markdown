@@ -3,7 +3,7 @@ layout:     post
 title:      "Ubuntu install R by sourcecode"
 date:       2016-05-10 12:00:00
 author:     "Jay Guo"
-header-img: "img/post-bg-06.jpg"
+header-img: "img/post-bg-07.jpg"
 ---
 
 一、 **源码下载**
