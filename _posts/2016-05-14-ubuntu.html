@@ -1,0 +1,51 @@
+<!DOCTYPE html><html><head><title>Untitled</title><meta charset='utf-8'><link href='https://dn-maxiang.qbox.me/res-min/themes/marxico.css' rel='stylesheet'><style>
+
+.note-content  {font-family: Courier New, 'Helvetica Neue', Arial, 'Hiragino Sans GB', STHeiti, 'Microsoft YaHei', 'WenQuanYi Micro Hei', SimSun, Song, sans-serif;}
+</style></head><body><div id='preview-contents' class='note-content'>
+                        <div id="wmd-preview" class="preview-content"></div>
+                    <div id="wmd-preview-section-74" class="wmd-preview-section preview-content">
+
+<p>一、 <strong>源码下载</strong> <br>
+    <a href="https://www.r-project.org/" target="_blank">https://www.r-project.org/</a></p>
+
+<p>二、<strong>解压</strong></p>
+
+</div><div id="wmd-preview-section-84" class="wmd-preview-section preview-content">
+
+<pre class="prettyprint hljs-dark"><code class="language-bash hljs">tar xzvf R-<span class="hljs-number">3.2</span>.<span class="hljs-number">4</span>.tar.gz<br></code></pre>
+
+<p>三、<strong>预编译</strong></p>
+
+</div><div id="wmd-preview-section-97" class="wmd-preview-section preview-content">
+
+<pre class="prettyprint hljs-dark"><code class="language-bash hljs">./configure --enable-R-shlib<br></code></pre>
+
+<p><small>enable-R-shlib可以保证lib目录下的动态库能够共享，这个选项一定不要忘记添</small>加，否则以后安装某些包的时候会出现Error in dyn.load的错误。</p>
+
+<p>四、<strong>报错</strong></p>
+
+<p><small>1、g77 编译器错误</small></p>
+
+</div><div id="wmd-preview-section-128" class="wmd-preview-section preview-content">
+
+<pre class="prettyprint hljs-dark"><code class="language-bash hljs">sudo apt-get install build-essential<br>sudo apt-get install gfortran<br></code></pre>
+
+<p><small>2、readline error</small></p>
+
+</div><div id="wmd-preview-section-183" class="wmd-preview-section preview-content">
+
+<pre class="prettyprint hljs-dark"><code class="language-bash hljs">configure: error: –with-readline=yes (default) and headers/libs are not available<br>sudo apt-get install libreadline6-dev<br></code></pre>
+
+<p><small>3、X11 error</small></p>
+
+</div><div id="wmd-preview-section-198" class="wmd-preview-section preview-content">
+
+<pre class="prettyprint hljs-dark"><code class="language-bash hljs">sudo apt-get install libxt-dev<br></code></pre>
+
+<p>五、<strong>编译</strong></p>
+
+<pre class="prettyprint hljs-dark"><code class="hljs go"><span class="hljs-built_in">make</span> &amp;&amp; <span class="hljs-built_in">make</span> install<br></code></pre>
+
+<p>六、<strong>环境变量</strong>  </p>
+
+<p>可以打开.bashrc文件，添加R_HOME和R_LIBS变量，并修改PATH<small></small></p></div><div id="wmd-preview-section-2" class="wmd-preview-section preview-content"></div><div id="wmd-preview-section-footnotes" class="preview-content"></div></div></body></html>
