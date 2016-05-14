@@ -1,46 +1,46 @@
 ---
 layout:     post
-title:      "Ubuntu ÏÂÔ´Âë°²×° R"
-1date:       2016-05-14 11:00:00
+title:      "Ubuntu ä¸‹æºç å®‰è£… R"
+date:       2016-05-10 12:00:00
 author:     "Jay Guo"
 header-img: "img/post-bg-06.jpg"
 ---
 
-Ò»¡¢ **Ô´ÂëÏÂÔØ**
+ä¸€ã€ **æºç ä¸‹è½½**
     <https://www.r-project.org/>
 
-¶ş¡¢**½âÑ¹**
+äºŒã€**è§£å‹**
 
 	 tar xzvf R-3.2.4.tar.gz
 
-Èı¡¢**Ô¤±àÒë**
+ä¸‰ã€**é¢„ç¼–è¯‘**
 
 	./configure --enable-R-shlib
 
-<small>enable-R-shlib¿ÉÒÔ±£Ö¤libÄ¿Â¼ÏÂµÄ¶¯Ì¬¿âÄÜ¹»¹²Ïí£¬Õâ¸öÑ¡ÏîÒ»¶¨²»ÒªÍü¼ÇÌí</small>¼Ó£¬·ñÔòÒÔºó°²×°Ä³Ğ©°üµÄÊ±ºò»á³öÏÖError in dyn.loadµÄ´íÎó¡£
+<small>enable-R-shlibå¯ä»¥ä¿è¯libç›®å½•ä¸‹çš„åŠ¨æ€åº“èƒ½å¤Ÿå…±äº«ï¼Œè¿™ä¸ªé€‰é¡¹ä¸€å®šä¸è¦å¿˜è®°æ·»</small>åŠ ï¼Œå¦åˆ™ä»¥åå®‰è£…æŸäº›åŒ…çš„æ—¶å€™ä¼šå‡ºç°Error in dyn.loadçš„é”™è¯¯ã€‚
 
-ËÄ¡¢**±¨´í**
+å››ã€**æŠ¥é”™**
 
-<small>1¡¢g77 ±àÒëÆ÷´íÎó</small>
+<small>1ã€g77 ç¼–è¯‘å™¨é”™è¯¯</small>
 
 	sudo apt-get install build-essential
 	sudo apt-get install gfortran
 
-<small>2¡¢readline error</small>
+<small>2ã€readline error</small>
 
-	configure: error: ¨Cwith-readline=yes (default) and headers/libs are not available
+	configure: error: â€“with-readline=yes (default) and headers/libs are not available
 	sudo apt-get install libreadline6-dev
 
-<small>3¡¢X11 error</small>
+<small>3ã€X11 error</small>
 
 	sudo apt-get install libxt-dev
 
-Îå¡¢**±àÒë**
+äº”ã€**ç¼–è¯‘**
 
 	make && make install
 
-Áù¡¢**»·¾³±äÁ¿**  
+å…­ã€**ç¯å¢ƒå˜é‡**  
         
-<small>&ensp;&ensp;&ensp;&ensp;¿ÉÒÔ´ò¿ª.bashrcÎÄ¼ş£¬Ìí¼ÓR_HOMEºÍR_LIBS±äÁ¿£¬²¢ĞŞ¸ÄPATH<small>
+<small>&ensp;&ensp;&ensp;&ensp;å¯ä»¥æ‰“å¼€.bashrcæ–‡ä»¶ï¼Œæ·»åŠ R_HOMEå’ŒR_LIBSå˜é‡ï¼Œå¹¶ä¿®æ”¹PATH<small>
 
 
