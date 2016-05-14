@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      "Ubuntu 下源码安装 R"
+title:      "Ubuntu install R by sourcecode"
 date:       2016-05-10 12:00:00
 author:     "Jay Guo"
 header-img: "img/post-bg-06.jpg"
