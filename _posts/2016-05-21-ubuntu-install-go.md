@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      "Ubuntu Install GO"
+title:      "Ubuntu 下安装 GO"
 date:       2016-05-21 16:00:00
 author:     "Jay Guo"
 header-img: "img/post-bg-06.jpg"
