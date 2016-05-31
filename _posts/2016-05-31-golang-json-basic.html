@@ -1,0 +1,40 @@
+<!DOCTYPE html><html><head><title>基本格式处理</title><meta charset='utf-8'><link href='https://dn-maxiang.qbox.me/res-min/themes/marxico.css' rel='stylesheet'><style></style></head><body><div id='preview-contents' class='note-content'>
+                        <div id="wmd-preview" class="preview-content"></div>
+                    <div id="wmd-preview-section-43" class="wmd-preview-section preview-content">
+
+</div><div id="wmd-preview-section-44" class="wmd-preview-section preview-content">
+
+<h1 id="基本格式处理">基本格式处理</h1>
+
+<blockquote>
+  <p>Golang自带encoding/json． <br>
+  编码Ａpi：func Marshal(v interface{}) ([]byte, error) <br>
+  解码Ａpi：func Unmarshal(data []byte, v interface{}) error <br>
+  通过Api声明可以看到，编码返回的是[]byte，可以认为是string. 解码得到的数据保存在我们传入的interface{}中.</p>
+</blockquote>
+
+<p><strong>包引用</strong></p>
+
+</div><div id="wmd-preview-section-45" class="wmd-preview-section preview-content">
+
+<pre class="prettyprint hljs-dark"><code class="language-go hljs"><span class="hljs-keyword">package</span> main <br><br><span class="hljs-keyword">import</span> (<br>        <span class="hljs-string">"encoding/json"</span><br>        <span class="hljs-string">"os"</span><br>        <span class="hljs-string">"fmt"</span><br>       )<br></code></pre>
+
+<blockquote>
+  <p>json格式确定的情况下，我们通过定义对应的struct来解析数据。</p>
+</blockquote>
+
+<p><strong>struct 定义</strong></p>
+
+</div><div id="wmd-preview-section-46" class="wmd-preview-section preview-content">
+
+<pre class="prettyprint hljs-dark"><code class="language-go hljs"><span class="hljs-keyword">type</span> MyData <span class="hljs-keyword">struct</span> {<br>    Name   <span class="hljs-typename">string</span>    <span class="hljs-string">`json:"item"`</span><br>    Other  <span class="hljs-typename">float32</span>   <span class="hljs-string">`json:"amount"`</span><br>}<br></code></pre>
+
+<blockquote>
+  <p><code>json:"item"</code> 的作用，就是Name字段在从结构体实例编码到JSON数据格式的时候，使用item作为名字。</p>
+</blockquote>
+
+<p><strong>完整代码</strong></p>
+
+</div><div id="wmd-preview-section-47" class="wmd-preview-section preview-content">
+
+<pre class="prettyprint hljs-dark"><code class="language-go hljs"><span class="hljs-keyword">package</span> main <br><br><span class="hljs-keyword">import</span> (<br>        <span class="hljs-string">"encoding/json"</span><br>        <span class="hljs-string">"os"</span><br>        <span class="hljs-string">"fmt"</span><br>       )<br><br><span class="hljs-keyword">type</span> MyData <span class="hljs-keyword">struct</span> {<br>    Name   <span class="hljs-typename">string</span>    <span class="hljs-string">`json:"item"`</span><br>    Other  <span class="hljs-typename">float32</span>   <span class="hljs-string">`json:"amount"`</span><br>}<br><br><span class="hljs-keyword">func</span> main () {<br>    <span class="hljs-keyword">var</span> (<br>        detail MyData<br>        md MyData<br>        xxx <span class="hljs-keyword">map</span>[<span class="hljs-typename">string</span>]<span class="hljs-keyword">interface</span>{}<br>    )<br><br>    detail.Name  = <span class="hljs-string">"1"</span><br>    detail.Other = <span class="hljs-number">2</span><br><br>    body, err := json.Marshal(detail)<br>    <span class="hljs-keyword">if</span> err != <span class="hljs-constant">nil</span> {<br>        <span class="hljs-built_in">panic</span>(err.Error())<br>    }<br><br>    fmt.Printf(body)<br><br>    json.Unmarshal(body, &amp;md)<br>    <span class="hljs-keyword">if</span> err != <span class="hljs-constant">nil</span> {<br>        <span class="hljs-built_in">panic</span>(err.Error())<br>    }<br><br>    fmt.Println(md.Name)<br>}<br></code></pre></div><div id="wmd-preview-section-footnotes" class="preview-content"></div></div></body></html>
