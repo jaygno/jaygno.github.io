@@ -1,0 +1,41 @@
+<!DOCTYPE html><html><head><title>复杂格式</title><meta charset='utf-8'><link href='https://dn-maxiang.qbox.me/res-min/themes/marxico.css' rel='stylesheet'><style></style></head><body><div id='preview-contents' class='note-content'>
+                        <div id="wmd-preview" class="preview-content"></div>
+                    <div id="wmd-preview-section-60" class="wmd-preview-section preview-content">
+
+</div><div id="wmd-preview-section-61" class="wmd-preview-section preview-content">
+
+<h1 id="复杂格式">复杂格式</h1>
+
+</div><div id="wmd-preview-section-62" class="wmd-preview-section preview-content">
+
+<h4 id="key值不定-value确定">key值不定 value确定</h4>
+
+<p>对接接口时，会遇到变量为key值的情况，此时value格式一般一致，采用以下方式处理</p>
+
+</div><div id="wmd-preview-section-63" class="wmd-preview-section preview-content">
+
+<pre class="prettyprint hljs-dark"><code class="language-go hljs">{<span class="hljs-string">"bj"</span>:{<span class="hljs-string">"people"</span>:<span class="hljs-number">10000000</span>,<span class="hljs-string">"age"</span>:<span class="hljs-number">40</span>}, <span class="hljs-string">"nj"</span>:{<span class="hljs-string">"people"</span>:<span class="hljs-number">5000000</span>, <span class="hljs-string">"age"</span>:<span class="hljs-number">35</span>}}<br><br><span class="hljs-keyword">type</span> MyStruct <span class="hljs-keyword">struct</span> {<br>People <span class="hljs-typename">int</span> <span class="hljs-string">`json"people"`</span><br>Age    <span class="hljs-typename">int</span> <span class="hljs-string">`json"age"`</span><br>}<br><br><span class="hljs-keyword">map</span>[<span class="hljs-typename">string</span>]MyStruct<br><br><span class="hljs-keyword">var</span> data MyStruct<br><br>Unmarshal(body,&amp;data)<br><br><span class="hljs-keyword">for</span> k, v := data {<br>    fmt.Println(k,v)<br>}<br><br></code></pre>
+
+</div><div id="wmd-preview-section-64" class="wmd-preview-section preview-content">
+
+<h4 id="key值不定且同层级有其它确定key">key值不定，且同层级有其它确定key</h4>
+
+</div><div id="wmd-preview-section-65" class="wmd-preview-section preview-content">
+
+<pre class="prettyprint hljs-dark"><code class="language-go hljs">{<span class="hljs-string">"citynum"</span>:<span class="hljs-number">50</span>, <span class="hljs-string">"bj"</span>:{<span class="hljs-string">"people"</span>:<span class="hljs-number">10000000</span>,<span class="hljs-string">"age"</span>:<span class="hljs-number">40</span>}, <span class="hljs-string">"nj"</span>:{<span class="hljs-string">"people"</span>:<span class="hljs-number">5000000</span>, <span class="hljs-string">"age"</span>:<span class="hljs-number">35</span>} }<br><br><span class="hljs-comment">//只能做以下声明</span><br><span class="hljs-keyword">var</span> data <span class="hljs-keyword">map</span>[<span class="hljs-typename">string</span>]<span class="hljs-keyword">interface</span>{}<br>Unmarshal(body, &amp;data)<br><br><span class="hljs-comment">//对于bj的value，此时被处理成interface{}， 如果想要按照Struct 处理bj的value， 需要重新编码，解码</span><br><span class="hljs-comment">//先删除掉citynum， 也可以后面遍历时字符串过滤</span><br><span class="hljs-built_in">delete</span>(data, <span class="hljs-string">"citynum"</span>)<br><span class="hljs-keyword">for</span> k, v := <span class="hljs-keyword">range</span> data {<br>    <span class="hljs-keyword">var</span> cityinfo MyStruct <br>    body , _:=Marshal(v)<br>    Unmarshal(body, &amp;cityinfo)<br>    fmt.Println(cityinfo.Age)<br>}<br></code></pre>
+
+</div><div id="wmd-preview-section-66" class="wmd-preview-section preview-content">
+
+<h4 id="更加复杂格式">更加复杂格式</h4>
+
+</div><div id="wmd-preview-section-67" class="wmd-preview-section preview-content">
+
+<pre class="prettyprint hljs-dark"><code class="language-go hljs"><span class="hljs-keyword">map</span>[<span class="hljs-typename">string</span>]<span class="hljs-keyword">interface</span>{}<br><br>借鉴上面的方式， 不停地嵌套处理吧， 会很麻烦<br></code></pre>
+
+</div><div id="wmd-preview-section-68" class="wmd-preview-section preview-content">
+
+<h4 id="注意">注意</h4>
+
+</div><div id="wmd-preview-section-69" class="wmd-preview-section preview-content">
+
+<pre class="prettyprint hljs-dark"><code class="language-go hljs">{<span class="hljs-string">"bj"</span>:{<span class="hljs-string">"people"</span>:<span class="hljs-number">10000000</span>,<span class="hljs-string">"age"</span>:<span class="hljs-number">40</span>}}<br>{<span class="hljs-string">"nj"</span>:{<span class="hljs-string">"people"</span>:<span class="hljs-number">10000000</span>,<span class="hljs-string">"age"</span>:<span class="hljs-number">40</span>}}<br>{<span class="hljs-string">"sj"</span>:{<span class="hljs-string">"people"</span>:<span class="hljs-number">10000000</span>,<span class="hljs-string">"age"</span>:<span class="hljs-number">40</span>}}<br>{<span class="hljs-string">"bh"</span>:{<span class="hljs-string">"people"</span>:<span class="hljs-number">10000000</span>,<span class="hljs-string">"age"</span>:<span class="hljs-number">40</span>}}<br><br>循环解析上面这种数据时<span class="hljs-keyword">var</span> 放在循环内，不然key不会变化，只有value 变化<br><br><span class="hljs-keyword">for</span> {<br>    <span class="hljs-keyword">var</span> ddd MyStruct<br>}<br></code></pre></div><div id="wmd-preview-section-footnotes" class="preview-content"></div></div></body></html>

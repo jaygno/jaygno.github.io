@@ -1,0 +1,15 @@
+<!DOCTYPE html><html><head><title>读取配置文件</title><meta charset='utf-8'><link href='https://dn-maxiang.qbox.me/res-min/themes/marxico.css' rel='stylesheet'><style></style></head><body><div id='preview-contents' class='note-content'>
+                        <div id="wmd-preview" class="preview-content"></div>
+                    <div id="wmd-preview-section-56" class="wmd-preview-section preview-content">
+
+</div><div id="wmd-preview-section-57" class="wmd-preview-section preview-content">
+
+<h1 id="读取配置文件">读取配置文件</h1>
+
+</div><div id="wmd-preview-section-58" class="wmd-preview-section preview-content">
+
+<pre class="prettyprint hljs-dark"><code class="language-go hljs"><span class="hljs-keyword">package</span> main<br><br><span class="hljs-keyword">import</span> (<br>        io <span class="hljs-string">"io/ioutil"</span><br>        json <span class="hljs-string">"encoding/json"</span><br>        <span class="hljs-string">"fmt"</span><br>       )<br><br><span class="hljs-keyword">func</span> Load (filename <span class="hljs-typename">string</span>, v <span class="hljs-keyword">interface</span>{}) {<br><br>    data, err := io.ReadFile(filename)<br><br>    <span class="hljs-keyword">if</span> err != <span class="hljs-constant">nil</span>{<br>        <span class="hljs-keyword">return</span> <br>    }<br><br>    datajson := []<span class="hljs-typename">byte</span>(data)<br><br>    fmt.Println(<span class="hljs-typename">string</span>(datajson))<br><br>    err = json.Unmarshal(datajson, v)<br><br>    <span class="hljs-keyword">if</span> err != <span class="hljs-constant">nil</span>{<br>        <span class="hljs-keyword">return</span><br>    }<br>}<br><br><br><br><span class="hljs-keyword">type</span> testdata <span class="hljs-keyword">struct</span> {<br>    Ip <span class="hljs-typename">string</span> <span class="hljs-string">`json"ip"`</span><br><br>    Count <span class="hljs-typename">int</span> <span class="hljs-string">`json"count"`</span><br><br>    City <span class="hljs-typename">string</span> <span class="hljs-string">`json:"city"`</span> <br>}<br><span class="hljs-comment">//`json""` 不加也可以正常解析，在解码的时候会通过字段进行匹配，大写，小写，此时需要保证与配置文件一致</span><br><br><br><br><span class="hljs-keyword">func</span> main() {<br><br>    <span class="hljs-keyword">var</span> v testdata<br><br>    Load(<span class="hljs-string">"config.json"</span>, &amp;v)<br><br>    fmt.Println(v)<br>}<br></code></pre>
+
+</div><div id="wmd-preview-section-59" class="wmd-preview-section preview-content">
+
+<pre class="prettyprint hljs-dark"><code class="language-vim hljs">config.json<br>{<br><br><span class="hljs-string">"ip"</span>: <span class="hljs-string">"127.1.1.1"</span>,<br><br><span class="hljs-string">"count"</span>:<span class="hljs-number">1233</span>,<br><br><span class="hljs-string">"city"</span>:<span class="hljs-string">"beijing"</span><br><br>}<br></code></pre></div><div id="wmd-preview-section-footnotes" class="preview-content"></div></div></body></html>
