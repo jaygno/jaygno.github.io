@@ -1,0 +1,64 @@
+<!DOCTYPE html><html><head><title>xmon 笔记</title><meta charset='utf-8'><link href='https://dn-maxiang.qbox.me/res-min/themes/marxico.css' rel='stylesheet'><style></style></head><body><div id='preview-contents' class='note-content'>
+                        <div id="wmd-preview" class="preview-content"></div>
+                    <div id="wmd-preview-section-943" class="wmd-preview-section preview-content">
+
+</div><div id="wmd-preview-section-944" class="wmd-preview-section preview-content">
+
+<h3 id="xmon-笔记">xmon 笔记</h3>
+
+<p>源码地址：[<a href="http://gitlab.fastweb.com.cn/guoyj/xmon_http_go]" target="_blank">http://gitlab.fastweb.com.cn/guoyj/xmon_http_go]</a></p>
+
+</div><div id="wmd-preview-section-945" class="wmd-preview-section preview-content">
+
+<h4 id="打包">打包</h4>
+
+</div><div id="wmd-preview-section-946" class="wmd-preview-section preview-content">
+
+<pre class="prettyprint hljs-dark"><code class="language-bash hljs">tar -czvf xmon_http_go.release2.tar.gz bin/ etc/ sbin/<br></code></pre>
+
+</div><div id="wmd-preview-section-947" class="wmd-preview-section preview-content">
+
+<h4 id="上传">上传</h4>
+
+</div><div id="wmd-preview-section-948" class="wmd-preview-section preview-content">
+
+<pre class="prettyprint hljs-dark"><code class="language-bash hljs">scpp xmon_http_go.release2.tar.gz root@<span class="hljs-number">202.85</span>.<span class="hljs-number">220.117</span>:/data/pub/xmon/<br></code></pre>
+
+</div><div id="wmd-preview-section-949" class="wmd-preview-section preview-content">
+
+<h4 id="下载">下载</h4>
+
+</div><div id="wmd-preview-section-950" class="wmd-preview-section preview-content">
+
+<pre class="prettyprint hljs-dark"><code class="language-bash hljs">wget http://<span class="hljs-number">202.85</span>.<span class="hljs-number">220.117</span>:<span class="hljs-number">8080</span>/pub/xmon/xmon_http_go.release2.tar.gz<br></code></pre>
+
+</div><div id="wmd-preview-section-951" class="wmd-preview-section preview-content">
+
+<h4 id="安装">安装</h4>
+
+</div><div id="wmd-preview-section-952" class="wmd-preview-section preview-content">
+
+<pre class="prettyprint hljs-dark"><code class="hljs gradle"><span class="hljs-regexp">/usr/</span>local<span class="hljs-regexp">/xmon_http_erlang/</span>sbin<span class="hljs-regexp">/xmon_http_erlang install</span><br></code></pre>
+
+</div><div id="wmd-preview-section-953" class="wmd-preview-section preview-content">
+
+<h4 id="修改配置">修改配置</h4>
+
+</div><div id="wmd-preview-section-954" class="wmd-preview-section preview-content">
+
+<pre class="prettyprint hljs-dark"><code class="hljs stylus">修改 xmon<span class="hljs-class">.conf</span> 配置IP<br>修改 xmon_http_erlang<span class="hljs-class">.conf</span> IP<br><br>到 http:<span class="hljs-comment">//merger.xmon.cloudxns.net</span><br></code></pre>
+
+</div><div id="wmd-preview-section-955" class="wmd-preview-section preview-content">
+
+<h4 id="启动">启动</h4>
+
+</div><div id="wmd-preview-section-984" class="wmd-preview-section preview-content">
+
+<pre class="prettyprint hljs-dark"><code class="hljs gradle"><span class="hljs-regexp">/usr/</span>local<span class="hljs-regexp">/xmon_http_erlang/</span>sbin<span class="hljs-regexp">/xmon_http_erlang start</span><br></code></pre></div><div id="wmd-preview-section-1359" class="wmd-preview-section preview-content">
+
+<h4 id="目前部署节点">目前部署节点</h4>
+
+<blockquote>
+  <p>IP: 115.63.103.29 <br>
+  原有xmon_http_erlang 重命名到 old_xmon_http_erlang， 如果golang版本有问题， 可以替换回去启动</p>
+</blockquote></div><div id="wmd-preview-section-footnotes" class="preview-content"></div></div></body></html>
