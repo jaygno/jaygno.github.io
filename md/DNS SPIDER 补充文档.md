@@ -1,4 +1,4 @@
-#DNS SPIDER 详细设计
+#DNS SPIDER 补充文档
 
 ------
 
@@ -16,7 +16,9 @@
 >└── tags
 
 ###dns-spider
+>  包括golang 实现的webserver 提供接口查询功能， glb日志处理功能。
 ###find_vip_visits
+>  
 ###manager
 >用于向探测节点下发实时任务，以及接受心跳包
 

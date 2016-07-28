@@ -1,8 +1,8 @@
 <!DOCTYPE html><html><head><title>rpm 制作</title><meta charset='utf-8'><link href='https://dn-maxiang.qbox.me/res-min/themes/marxico.css' rel='stylesheet'><style></style></head><body><div id='preview-contents' class='note-content'>
                         <div id="wmd-preview" class="preview-content"></div>
-                    <div id="wmd-preview-section-5157" class="wmd-preview-section preview-content">
+                    <div id="wmd-preview-section-37" class="wmd-preview-section preview-content">
 
-</div><div id="wmd-preview-section-5158" class="wmd-preview-section preview-content">
+</div><div id="wmd-preview-section-38" class="wmd-preview-section preview-content">
 
 <h3 id="rpm-制作">rpm 制作</h3>
 
@@ -12,7 +12,7 @@
   <p>RPM(Rpm Package Management)在ReadHat等发行版下被用作软件包管理程序，其将某个软件相关的文件置入一个.rpm包中，用rpm命令，我们可以方便地完成Linux下软件安装、文件查看等操作。在《rpm包管理》一文中我们学习了rpm安装、查看软件包的相关方法，下面介绍如何制作rpm包。</p>
 </blockquote>
 
-</div><div id="wmd-preview-section-5159" class="wmd-preview-section preview-content">
+</div><div id="wmd-preview-section-39" class="wmd-preview-section preview-content">
 
 <h4 id="rpm格式">rpm格式</h4>
 
@@ -20,7 +20,7 @@
   <p>用rpm打包，将会产生两种rpm包，一是源码包(xxx.src.rpm)，一是binary包(xxx.rpm)。源码包可用于开源软件发布源码，一般包含xxx.spec文件和xxx.tar.gz文件；binary包用于直接软件安装，包含已完成编译的可执行文件以及相关配置文件等。</p>
 </blockquote>
 
-</div><div id="wmd-preview-section-5160" class="wmd-preview-section preview-content">
+</div><div id="wmd-preview-section-40" class="wmd-preview-section preview-content">
 
 <h4 id="rpmbuild-目录">rpmbuild 目录</h4>
 
@@ -37,7 +37,7 @@
   <p>suse，目录在/usr/src/packages下; redhat，目录在/usr/src/redhat下; centos ,目录在$HOME/rpmbuild/下;</p>
 </blockquote>
 
-</div><div id="wmd-preview-section-5161" class="wmd-preview-section preview-content">
+</div><div id="wmd-preview-section-41" class="wmd-preview-section preview-content">
 
 <h4 id="rpmbuild-打包">rpmbuild 打包</h4>
 
@@ -47,14 +47,12 @@
   <pre class="prettyprint hljs-dark"><code class="language-bash hljs">rpmbuild -ba xxx.spec<br></code></pre>
 </blockquote>
 
-</div><div id="wmd-preview-section-5162" class="wmd-preview-section preview-content">
+</div><div id="wmd-preview-section-49" class="wmd-preview-section preview-content">
 
 <h4 id="spec文件">spec文件</h4>
 
 <blockquote>
-  <p>格式说明：<a href="http://blog.11p2f.com/2016/07/27/spec-文件格式/" target="_blank">enter link description here</a></p>
-</blockquote>
-
-</div><div id="wmd-preview-section-5163" class="wmd-preview-section preview-content">
+  <p>格式说明：<a href="http://blog.11p2f.com/2016/07/27/spec-文件格式/" target="_blank">http://blog.11p2f.com/2016/07/27/spec-%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F/</a></p>
+</blockquote></div><div id="wmd-preview-section-43" class="wmd-preview-section preview-content">
 
 <pre class="prettyprint hljs-dark"><code class="language-bash hljs">Name:       demo<br>Version:    <span class="hljs-number">0.1</span><br>Release:    <span class="hljs-number">1</span>   <br>Summary:    demo <span class="hljs-keyword">for</span> build rpm<br><br>Group:      System Environment/Daemons  <br>License:    GPL <br>URL:        http://github.com/jaygno<br>Source0:    demo.tar.gz <br>BuildRoot:  %(mktemp -ud %{_tmppath}/%{name}-%{version}-%{release}-XXXXXX)<br><br>BuildRequires: /bin/sh  <br>Requires:   /bin/sh<br>Requires(rpmlib): rpmlib(CompressedFileNames) &lt;= <span class="hljs-number">3.0</span>.<span class="hljs-number">4</span>-<span class="hljs-number">1</span> rpmlib(PayloadFilesHavePrefix) &lt;= <span class="hljs-number">4.0</span>-<span class="hljs-number">1</span><br><br>%description<br>A demo just <span class="hljs-keyword">for</span> build rpm.<br><br>%prep<br>zcat <span class="hljs-variable">$RPM_SOURCE_DIR</span>/demo.tar.gz | tar xvf -<br><br><br>%build<br><span class="hljs-built_in">cd</span> <span class="hljs-variable">$RPM_BUILD_DIR</span>/demo<br><br>%install<br><span class="hljs-built_in">cd</span> <span class="hljs-variable">$RPM_BUILD_DIR</span>/demo<br><br>%clean<br>rm -rf <span class="hljs-variable">$RPM_BUILD_ROOT</span><br><br><br>%files<br>%defattr(-,nobody,nobody,-)<br>%doc <span class="hljs-variable">$RPM_BUILD_DIR</span>/demo/conf/json.conf<br><br><br>%changelog<br></code></pre></div><div id="wmd-preview-section-footnotes" class="preview-content"></div></div></body></html>
