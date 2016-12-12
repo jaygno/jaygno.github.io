@@ -1,0 +1,74 @@
+---
+layout:     post
+title:      "rpm 制作"
+date:       2016-07-27 09:00:00
+author:     "Jay Guo"
+header-img: "img/post-bg-06.jpg"
+---
+
+###rpm 制作
+------
+>RPM(Rpm Package Management)在ReadHat等发行版下被用作软件包管理程序，其将某个软件相关的文件置入一个.rpm包中，用rpm命令，我们可以方便地完成Linux下软件安装、文件查看等操作。在《rpm包管理》一文中我们学习了rpm安装、查看软件包的相关方法，下面介绍如何制作rpm包。
+
+####rpm格式
+>用rpm打包，将会产生两种rpm包，一是源码包(xxx.src.rpm)，一是binary包(xxx.rpm)。源码包可用于开源软件发布源码，一般包含xxx.spec文件和xxx.tar.gz文件；binary包用于直接软件安装，包含已完成编译的可执行文件以及相关配置文件等。
+
+####rpmbuild 目录
+>执行rpmbuild时， rpm有创建专门的目录用于打包：
+>  * SOURCES目录：存放.tar.gz源码文件
+>  * SPECS目录：存放.spec文件
+>  * SRPMS目录：存放生成的xxx.src.rpm文件
+>  * BUILD目录：存放解压后的源码文件或其他中间的临时文件
+>  * RPMS目录：存放生成的xxx.rpm文件
+>  
+>suse，目录在/usr/src/packages下; redhat，目录在/usr/src/redhat下; centos ,目录在$HOME/rpmbuild/下;
+
+####rpmbuild 打包
+
+>.tar.gz文件放到SOURCES目录下，.spec文件编辑完成并放到SPECS目录下。
+>```bash
+>rpmbuild -ba xxx.spec
+>```
+
+####spec文件
+>格式说明：[http://blog.11p2f.com/2016/07/27/spec-%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F/](http://blog.11p2f.com/2016/07/27/spec-文件格式/)
+```bash
+Name:		demo
+Version:	0.1
+Release:    1	
+Summary:	demo for build rpm
+
+Group:	    System Environment/Daemons	
+License:    GPL	
+URL:		http://github.com/jaygno
+Source0:    demo.tar.gz	
+BuildRoot:	%(mktemp -ud %{_tmppath}/%{name}-%{version}-%{release}-XXXXXX)
+
+BuildRequires: /bin/sh	
+Requires:   /bin/sh
+Requires(rpmlib): rpmlib(CompressedFileNames) <= 3.0.4-1 rpmlib(PayloadFilesHavePrefix) <= 4.0-1
+
+%description
+A demo just for build rpm.
+
+%prep
+zcat $RPM_SOURCE_DIR/demo.tar.gz | tar xvf -
+
+
+%build
+cd $RPM_BUILD_DIR/demo
+
+%install
+cd $RPM_BUILD_DIR/demo
+
+%clean
+rm -rf $RPM_BUILD_ROOT
+
+
+%files
+%defattr(-,nobody,nobody,-)
+%doc $RPM_BUILD_DIR/demo/conf/json.conf
+
+
+%changelog
+```
