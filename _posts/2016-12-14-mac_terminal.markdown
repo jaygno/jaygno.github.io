@@ -1,13 +1,19 @@
 ---
 layout:     post
-title:        "mac terminal 提示符配置"
-date:       2016-12-12 12:00:00
-author:     "Jay Guo"
-header-img: "img/post-bg-06.jpg"
+
 tags:       mac
+
+title:        "mac terminal 提示符配置"
+
+date:       2016-12-12 12:00:00
+
+author:     "Jay Guo"
+
+header-img: "img/post-bg-06.jpg"
+
 ---
 
-#mac terminal 提示符配置
+# mac terminal 提示符配置
 ------
 通过在配置文件里配置环境变量实现
 >nano .bash_profile
