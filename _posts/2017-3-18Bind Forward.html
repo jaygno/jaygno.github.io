@@ -1,0 +1,63 @@
+<!DOCTYPE html><html><head><title>Bind Forward</title><meta charset='utf-8'><link href='https://dn-maxiang.qbox.me/res-min/themes/marxico.css' rel='stylesheet'><style></style></head><body><div id='preview-contents' class='note-content'>
+                        
+                    
+
+
+
+<h1 id="bind-forward">Bind Forward</h1>
+
+<blockquote>
+  <p>bind有一项功能是forward，也就是只是做dns缓存。 当你设置了转发器后，所有非本域的和在缓存中无法找到的域名查询都将转发到设置的 DNS 转发器上，由这台 DNS 来完成解析工作，并对响应进行缓存。 <br>
+  适用以下情况：</p>
+  
+  <ul><li>做临时测试，不想向上级申请修改ns记录</li>
+  <li>不想向上级申请修改ns记录但希望交给另外的服务器处理</li>
+  <li>只有有限的公网IP，可以在把dns请求交给局域网</li>
+  <li>节省流量</li>
+  </ul>
+</blockquote>
+
+<h2 id="转发配置">转发配置</h2>
+
+<h3 id="域转发">域转发</h3>
+
+<pre class="prettyprint hljs-dark"><code class="language-bash hljs">zone <span class="hljs-string">"aslibra.com"</span> {<br>  <span class="hljs-built_in">type</span> forward;<br>  forward only;<br>  forwarders {<span class="hljs-number">218.241</span>.<span class="hljs-number">231.189</span>;};<br>};<br></code></pre>
+
+<blockquote>
+  <ul><li>语法  forward only｜first  <br>
+  **   only：只做转发，在连接不到转发服务器的情况下，只能使用区的权威数据和缓存来响应查询了 <br>
+  ** first：先转发，如果转发之后没有结果，才进行迭代。</li>
+  <li>forwarders可以添加多个dns服务器。</li>
+  </ul>
+</blockquote>
+
+
+
+<h3 id="全局转发">全局转发</h3>
+
+
+
+<pre class="prettyprint hljs-dark"><code class="language-bash hljs">options {   <br>    listen-on port <span class="hljs-number">53</span> { <span class="hljs-number">127.0</span>.<span class="hljs-number">0.1</span>; };<br>    listen-on-v6 port <span class="hljs-number">53</span> { ::<span class="hljs-number">1</span>; };  <br>    directory <span class="hljs-string">"/var/named"</span>;  <br>    dump-file <span class="hljs-string">"/var/named/data/cache_dump.db"</span>;              <br>    statistics-file <span class="hljs-string">"/var/named/data/named_stats.txt"</span>;  <br>    memstatistics-file <span class="hljs-string">"/var/named/data/named_mem_stats.txt"</span>;  <br>    allow-query { localhost; }; <br>    recursion yes;  // <br>    dnssec-enable yes; // <br>    dnssec-validation yes;  // <br>    dnssec-lookaside auto; <br><br>    /* Path to ISC DLV key */  <br>    bindkeys-file <span class="hljs-string">"/etc/named.iscdlv.key"</span>; <br>    managed-keys-directory <span class="hljs-string">"/var/named/dynamic"</span>;  <br>    //将非自己解析的区域的请求转发到Google的DNS上解析，仅作转发  <br>    forward only;  <br>    forwarders { <span class="hljs-number">8.8</span>.<span class="hljs-number">8.8</span>; }; <br>};<br></code></pre>
+
+
+
+<h3 id="rfc">rfc</h3>
+
+<blockquote>
+  <p>完整准确的接收客户端请求，完整准确的接收上游响应，并返回给客户端</p>
+  
+  <p>尽可能透明 <br>
+  不建议对保留字段的验证 <br>
+  转发与 label compression 无关 <br>
+  不建议对qtype qclass的取值验证  <br>
+  由于udp报文大小限制，如果响应被截断，并且tc 未置位，可能导致客户端出错。 <br>
+  支持tcp <br>
+  支持edns <br>
+  Secret Key Transaction Authentication for DNS (TSIG)</p>
+</blockquote>
+
+<h3 id="附录">附录</h3>
+
+<p><a href="http://www.360doc.com/content/14/0826/17/13047933_404796289.shtml" target="_blank">BIND 高级特性 forward</a> <br>
+<a href="http://blog.csdn.net/zhu_tianwei/article/details/45061705" target="_blank">BIND 配置之forward转发</a> <br>
+<a href="https://www.rfc-editor.org/rfc/rfc5625.txt" target="_blank">RFC- DNS Proxy Implementation Guidelines</a></p></div></body></html>
